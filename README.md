@@ -2,20 +2,16 @@
 Sample App Python with Flask service to service communication and Monitoring with Prometheus
 
 ## Web App
-This is a simple flask web app that will return the string, you can se in [here](https://github.com/andreeko28/rukita-test/blob/main/app/app.py)
-
-## Pipeline CI/CD
-This app will build and deploy using this Azure DevOps pipeline with multibranch pipeline for each environment with conditional following/trigger from branch that trigger in repository, you can see the pipeline in [here](https://github.com/andreeko28/rukita-test/blob/main/pipelines.yml)
-
-In this pipeline Define 2 Stage for Development from branch 'develop' and Production from branch 'main'
-And in this pipeline is have seperate with different stage for each jobs have several step :
-1. Build and Test the app
-2. Build and Push container Image to registry with dynamic version image
-3. Change tag environment
-4. Deploy to Kubernetes
+This is a simple Flask web app that will return the string, you can see service-a in [here](https://github.com/andreeko28/kumparan-test/blob/main/service-a/app.py) and service-b in [here](https://github.com/andreeko28/kumparan-test/blob/main/service-b/service_b.py)
 
 ## Docker image
-This is for the Image that will be build in pipeline and use for deploy in kubernetes, you can see in [here](https://github.com/andreeko28/rukita-test/blob/main/Dockerfile)
+This is for the Image that will be built and used for deployment in Kubernetes, you can see for service-a in [here](https://github.com/andreeko28/kumparan-test/blob/main/service-a/Dockerfile) and service-b in [here](https://github.com/andreeko28/kumparan-test/blob/main/service-b/Dockerfile)
 
 ## Manifest Kubernetes
-In this part for manifest that will be use for deploy the web app into Kubernetes, you can see in [here](https://github.com/andreeko28/rukita-test/blob/main/manifest/deployment.yml)
+In this part of manifest that will be used to deploy the web app into Kubernetes, you can see for service-a in [here](https://github.com/andreeko28/kumparan-test/blob/main/service-a/deployment.yml) and service-b in [here](https://github.com/andreeko28/kumparan-test/blob/main/service-b/deployment.yml)
+
+## Monitoring
+This part is for monitoring with Prometheus using Helm Chart and specifying Prometheus configuration, you can see for Prometheus config in [here](https://github.com/andreeko28/kumparan-test/blob/main/prometheus-config.yaml)
+and this is a command for running Prometheus using Helm Chart : 
+- helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+- helm install prometheus prometheus-community/prometheus -f prometheus-config.yaml -n <namespace>
