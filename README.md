@@ -14,4 +14,4 @@ In this part of manifest that will be used to deploy the web app into Kubernetes
 This part is for monitoring with Prometheus using Helm Chart and specifying Prometheus configuration, you can see for Prometheus config in [here](https://github.com/andreeko28/kumparan-test/blob/main/prometheus-config.yaml)
 and this is a command for running Prometheus using Helm Chart : 
 - helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-- helm install prometheus prometheus-community/prometheus -f prometheus-config.yaml -n <namespace>
+- helm install prometheus prometheus-community/prometheus -f prometheus-config.yaml -n "namespace"
