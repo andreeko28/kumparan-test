@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-b
+  template:
+    metadata:
+      labels:
+        app: service-b
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+      - name: service-b
+        image: anteraja.azurecr.io/test-python-app:service-b-1
+        ports:
+        - containerPort: 5001
+---
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-b
+  namespace: testing
+spec:
+  selector:
+    app: service-b
+  ports:
+    - protocol: TCP
+      port: 5001
+      targetPort: 5001
